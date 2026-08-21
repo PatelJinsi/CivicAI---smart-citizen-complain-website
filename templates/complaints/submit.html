@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}Submit Complaint — CivicAI{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title"><i class="bi bi-plus-circle me-2"></i>Submit a Complaint</h1>
+    <p class="page-sub">Fill the form below. Our AI will automatically analyze and categorize your complaint.</p>
+  </div>
+</div>
+
+<div class="container py-4">
+  <div class="row g-4">
+    <!-- FORM -->
+    <div class="col-lg-7">
+      <div class="civic-card">
+        <div class="civic-card-header">
+          <i class="bi bi-pencil-square me-2"></i>Complaint Details
+        </div>
+        <div class="civic-card-body">
+          <form method="post" enctype="multipart/form-data" id="complaintForm">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label fw-500">Complaint Title *</label>
+              {{ form.title }}
+              <div class="form-text">Give a short, clear title (e.g., "Large pothole near Gandhi Market")</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-500">Description *</label>
+              {{ form.description }}
+              <div class="form-text">Be specific — mention duration, impact, and how many people are affected</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-500">Location / Area *</label>
+              {{ form.location }}
+            </div>
+            <div class="mb-4">
+              <label class="form-label fw-500">Attach Photo <span class="text-muted">(optional)</span></label>
+              {{ form.image }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100" id="submitBtn">
+              <i class="bi bi-cpu me-2"></i>Submit & Analyze with AI
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI INFO PANEL -->
+    <div class="col-lg-5">
+      <div class="civic-card ai-info-card">
+        <div class="civic-card-header">
+          <i class="bi bi-robot me-2"></i>AI Will Detect
+        </div>
+        <div class="civic-card-body">
+          <div class="ai-feature-row">
+            <div class="ai-feature-icon bg-primary-soft"><i class="bi bi-tags-fill text-primary"></i></div>
+            <div>
+              <div class="fw-500">Complaint Category</div>
+              <div class="small text-muted">Road, Water, Garbage, Electricity, or Other</div>
+            </div>
+          </div>
+          <div class="ai-feature-row">
+            <div class="ai-feature-icon bg-danger-soft"><i class="bi bi-exclamation-triangle-fill text-danger"></i></div>
+            <div>
+              <div class="fw-500">Urgency Score (0–100)</div>
+              <div class="small text-muted">Based on keywords, severity, and duration</div>
+            </div>
+          </div>
+          <div class="ai-feature-row">
+            <div class="ai-feature-icon bg-warning-soft"><i class="bi bi-emoji-expressionless-fill text-warning"></i></div>
+            <div>
+              <div class="fw-500">Sentiment Analysis</div>
+              <div class="small text-muted">Positive, Neutral, Negative, or Frustrated</div>
+            </div>
+          </div>
+          <div class="ai-feature-row">
+            <div class="ai-feature-icon bg-success-soft"><i class="bi bi-diagram-3-fill text-success"></i></div>
+            <div>
+              <div class="fw-500">Department Assignment</div>
+              <div class="small text-muted">Auto-routed to the right government dept</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY GUIDE -->
+      <div class="civic-card mt-3">
+        <div class="civic-card-header"><i class="bi bi-question-circle me-2"></i>Category Guide</div>
+        <div class="civic-card-body">
+          <div class="cat-guide-row"><span class="cat-icon">🛣️</span><span><strong>Road</strong> — Potholes, broken roads, traffic signals</span></div>
+          <div class="cat-guide-row"><span class="cat-icon">💧</span><span><strong>Water</strong> — Leakage, supply, drainage issues</span></div>
+          <div class="cat-guide-row"><span class="cat-icon">🗑️</span><span><strong>Garbage</strong> — Waste collection, illegal dumping</span></div>
+          <div class="cat-guide-row"><span class="cat-icon">💡</span><span><strong>Electricity</strong> — Street lights, power cuts</span></div>
+          <div class="cat-guide-row"><span class="cat-icon">📋</span><span><strong>Other</strong> — Noise, stray animals, public nuisance</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.getElementById('complaintForm').addEventListener('submit', function() {
+  const btn = document.getElementById('submitBtn');
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>AI Analyzing...';
+  btn.disabled = true;
+});
+</script>
+{% endblock %}
+{% endblock %}

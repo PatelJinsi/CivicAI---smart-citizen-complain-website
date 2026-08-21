@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}CivicAI — Smart Citizen Complaint System{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="container text-center py-5">
+    <div class="hero-badge mb-4">
+      <span class="pulse-dot"></span> AI-Powered Government Portal
+    </div>
+    <h1 class="hero-title">Smart Citizen<br><span class="text-gradient">Complaint System</span></h1>
+    <p class="hero-subtitle">
+      Report civic issues instantly. Our AI automatically categorizes your complaint,
+      detects urgency, and routes it to the right department — in seconds.
+    </p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="{% url 'submit_complaint' %}" class="btn btn-primary btn-lg px-4">
+        <i class="bi bi-plus-circle me-2"></i>Submit a Complaint
+      </a>
+      <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg px-4">
+        <i class="bi bi-box-arrow-in-right me-2"></i>Track My Complaint
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero-stats mt-5">
+      <div class="hero-stat">
+        <div class="hero-stat-num">{{ stats.total }}</div>
+        <div class="hero-stat-label">Total Complaints</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">{{ stats.resolved }}</div>
+        <div class="hero-stat-label">Resolved</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">95%</div>
+        <div class="hero-stat-label">AI Accuracy</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">NLP</div>
+        <div class="hero-stat-label">Powered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-5 px-4" style="background: #f8faff;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">AI Does the Heavy Lifting</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="feat-card h-100">
+          <div class="feat-icon feat-blue"><i class="bi bi-cpu-fill"></i></div>
+          <h4>Auto Categorization</h4>
+          <p>NLP text classifier automatically identifies whether your complaint is about roads, water, garbage, or electricity — with 95%+ accuracy.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feat-card h-100">
+          <div class="feat-icon feat-red"><i class="bi bi-exclamation-triangle-fill"></i></div>
+          <h4>Urgency Detection</h4>
+          <p>AI scores each complaint 0–100 for urgency. Dangerous or critical issues are automatically flagged for immediate attention.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feat-card h-100">
+          <div class="feat-icon feat-cyan"><i class="bi bi-emoji-expressionless-fill"></i></div>
+          <h4>Sentiment Analysis</h4>
+          <p>VADER NLP detects your tone — frustrated, negative, or urgent — helping officials prioritize emotionally charged cases.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feat-card h-100">
+          <div class="feat-icon feat-green"><i class="bi bi-diagram-3-fill"></i></div>
+          <h4>Auto Department Routing</h4>
+          <p>Based on AI category, complaints are automatically forwarded to the correct government department — no manual sorting needed.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feat-card h-100">
+          <div class="feat-icon feat-gold"><i class="bi bi-graph-up-arrow"></i></div>
+          <h4>Admin Dashboard</h4>
+          <p>Real-time analytics, complaint tracking, status updates, charts, and filters — all in one powerful admin panel.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feat-card h-100">
+          <div class="feat-icon feat-purple"><i class="bi bi-geo-alt-fill"></i></div>
+          <h4>Status Tracking</h4>
+          <p>Citizens can track their complaint from submission to resolution — New → In Progress → Resolved — with full transparency.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-5 px-4">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Process</div>
+      <h2 class="section-title">How It Works</h2>
+    </div>
+    <div class="row g-4 align-items-center">
+      <div class="col-md-3 text-center">
+        <div class="step-circle">1</div>
+        <h5 class="mt-3 fw-600">Submit Complaint</h5>
+        <p class="text-muted small">Citizen fills simple form with description and location</p>
+      </div>
+      <div class="col-md-1 text-center d-none d-md-block">
+        <i class="bi bi-arrow-right fs-2 text-muted"></i>
+      </div>
+      <div class="col-md-3 text-center">
+        <div class="step-circle step-ai">2</div>
+        <h5 class="mt-3 fw-600">AI Analyzes</h5>
+        <p class="text-muted small">NLP predicts category, urgency score, and sentiment</p>
+      </div>
+      <div class="col-md-1 text-center d-none d-md-block">
+        <i class="bi bi-arrow-right fs-2 text-muted"></i>
+      </div>
+      <div class="col-md-3 text-center">
+        <div class="step-circle step-done">3</div>
+        <h5 class="mt-3 fw-600">Department Resolves</h5>
+        <p class="text-muted small">Routed to right department, status tracked till resolved</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section py-5 text-center">
+  <div class="container">
+    <h2 class="text-white fw-700 mb-3">Have a Complaint? Report It Now.</h2>
+    <p class="text-white-50 mb-4">AI will analyze it in seconds. Your voice matters.</p>
+    <a href="{% url 'register' %}" class="btn btn-light btn-lg px-5 fw-500">
+      <i class="bi bi-person-plus me-2"></i>Get Started Free
+    </a>
+  </div>
+</section>
+{% endblock %}
